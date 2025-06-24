@@ -130,12 +130,11 @@
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
         <!-- Your video here -->
-        <source src="static/videos/FourWindowl1el0p.mp4"
-        type="video/mp4">
+        <source src="static/videos/FourWindowl1el0p.mp4" type="video/mp4">
       </video>
       <h2 class="subtitle has-text-centered">
             Here we have the level-1 evader beating the level-0 pursuer team. The level-0 pursuer team is trained on a naive A* evader and is not 
-            familiar with responding to any strategic evasive actions when seen. Above 5 seconds into the top two videos, the evader (red trail) is seen entering under 
+            familiar with responding to any strategic evasive actions when seen. About 5 seconds into the top two videos, the evader (red trail) is seen entering under 
             a thick group of trees as soon as it sees the high-level pursuer (HLP) and exits on the other side. When the videos pause, the top left video
             shows what the naive evader would have done (denoted in pink), if it would have taken this non-evasive path, the HLP would have surely seen it thus
             increasing its likelyhood of capture.
@@ -183,35 +182,53 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
+      <h2 class="title is-3">Environment</h2>
       <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
-        <!-- Your image here -->
-        <img class="carousel-image" src="static/images/rotated_env.png" alt="MY ALT TEXT"/>
+        <img class="carousel-image" src="static/images/rotated_env.png" alt="MY ALT TEXT" style="max-height: 500px; width: auto;"/>
         <h2 class="subtitle has-text-centered">
           Training environment in Minigrid.
         </h2>
       </div>
       <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/airsim_env.png" alt="MY ALT TEXT"/>
+        <img class="carousel-image" src="static/images/airsim_env.png" alt="MY ALT TEXT" style="max-height: 500px; width: auto;"/>
         <h2 class="subtitle has-text-centered">
           Testing environment in AirSim.
         </h2>
       </div>
-      <!-- <div class="item"> -->
-        <!-- Your image here -->
-        <!-- <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
+      <div class="item">
+        <img class="carousel-image" src="static/images/obstacles.png" alt="MY ALT TEXT" style="width: 100%; height: auto; max-width: 1100px;"/>
         <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item"> -->
-      <!-- Your image here -->
-      <!-- <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div> -->
+          Diverse obstacles within the environment that limit movements among specific drones.
+        </h2>
+      </div>
+      <div class="item">
+        <div class="item item-video1">
+          <figure class="has-text-centered">
+            <div class="has-text-centered"></div>
+            <video poster="" id="gridworld-env" autoplay controls muted loop style="width: 40%; height: auto;">
+              <!-- Your video file here -->
+              <source src="static/videos/l0_pursuer_l0e.mp4"
+              type="video/mp4">
+            </video>
+          <h2 class="subtitle has-text-centered">MatPlotLib rendering of GridWorld environment</h2>
+        </figure>
+        </div>
+      </div>
+      <div class="item">
+        <div class="item item-video1">
+          <figure class="has-text-centered">
+            <div class="has-text-centers"></div>
+            <!-- <video poster="" id="video1" autoplay controls muted loop height="50%">  -->
+            <video poster="" id="airsim-env" autoplay controls muted loop style="width: 70%; height: auto;">
+              <!-- Your video file here -->
+              <source src="static/videos/l0p_vs_l0e_final.mp4"
+              type="video/mp4">
+            </video>
+            <h2 class="subtitle has-text-centered">AirSim rendering of the same game</h2>
+          </figure>
+        </div>
+      </div>
   </div>
 </div>
 </div>
@@ -241,125 +258,146 @@
 </section> -->
 <!-- End youtube video -->
 
-
-<!-- Video carousel -->
+<!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">AirSim</h2>
+      <h2 class="title is-3">Challenges</h2>
       <div id="results-carousel" class="carousel results-carousel">
-        <!-- Video 1 -->
+       <div class="item">
+        <!-- Your image here -->
+        <img class="carousel-image" src="static/images/challenge_1.png" alt="MY ALT TEXT" style="max-height: 600px; width: auto;"/>
+        <h2 class="subtitle has-text-centered">
+          <b>Solution.</b> For modeling diverse evader strategies a pursuer team might see at runtime, we iteratively train a set of k policies using PPO where 
+          at each level-i for i in 0 to k-1, the i<sup>th</sup> agent is trained against its adversary's i<sup>th</sup>-1 policy. 
+          Each level's agent specializes in the defeating the previous level's adversary so we say that at each level, an agent's reasoning
+          capacity is bounded by the adversary's strategy it was trained on. For each policy it is important that the pursuer team is able 
+          to plan long term since it is unaware of the evader's location, goal, and strategy. We do this by implementing using an LSTM to
+          train the actor-critic allow the agents to learn long term histories of the game.
+          
+        </h2>
+      </div>
+      <div class="item">
         <div class="item item-video1">
           <figure class="has-text-centered">
-            <div class="has-text-centers"></div>
-            <!-- <video poster="" id="video1" autoplay controls muted loop height="50%">  -->
-                <video class="video-small" id="video1" autoplay controls muted loop>
-                <!-- Your video file here -->
-                <source src="static/videos/l0p_vs_l0e_final.mp4"
-                type="video/mp4">
-              </video>
-          <h2 class="subtitle has-text-centered">Level 0 Pursuer Team vs Level 0 Evader</h2>
+            <div class="has-text-centered"></div>
+            <!-- <video class="video-small" id="video1" autoplay controls muted loop> -->
+              <video poster="" id="video1" autoplay controls muted loop style="width: 70%; height: auto;">
+              <!-- Your video file here -->
+              <source src="static/videos/challenge_1_ansr_pi_jun25.mp4"
+              type="video/mp4">
+            </video>
+          <h2 class="subtitle has-text-centered">Evader position, destination, and strategy unknown</h2>
         </figure>
-        </div>
-        <!-- Video 2 -->
-        <div class="item item-video2">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-              <video class="video-small" id="video2" autoplay controls muted loop> 
-                <!-- Your video file here -->
-                <source src="static/videos/l1e_vs_l0p_final.mp4"
-                type="video/mp4">
-              </video>
-            <h2 class="subtitle has-text-centered">Level 0 Pursuer Team vs Level 1 Evader</h2>
-        </figure>
-        </div>
-        <!-- Video 3 -->
-        <div class="item item-video3">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-              <video class="video-small" id="video3" autoplay controls muted loop>
-                <!-- Your video file here -->
-                <source src="static/videos/l0p_vs_l0e_final.mp4"
-                type="video/mp4">
-              </video>
-            <h2 class="subtitle has-text-centered">Level 1 Pursuer Team vs Level 1 Evader</h2>
-          </figure>
-        </div>
-        <!-- Video 4 -->
-        <div class="item item-video4">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-              <video class="video-small" id="video4" autoplay controls muted loop>
-                <!-- Your video file here -->
-                <source src="static/videos/l1e_vs_l0p_final.mp4"
-                type="video/mp4">
-              </video>
-            <h2 class="subtitle has-text-centered">Level 1 Pursuer Team vs Level 0 Evader</h2n>
-          </figure>
         </div>
       </div>
-    </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img class="carousel-image" src="static/images/challenge_2.png" alt="MY ALT TEXT" style="max-height: 600px; width: auto;"/>
+        <h2 class="subtitle has-text-centered">
+          <b>Solution.</b> To be able to predict the strategy of an unknown evader, we train a classification model that is able to predict the evader level
+          based on its actions taken over time. To do this we implemented an LSTM with a single layer output and take the softmax of this 
+          output. 
+        </h2>
+      </div>
+      <div class="item">
+        <div class="item item-video1">
+          <figure class="has-text-centered">
+            <div class="has-text-centered"></div>
+            <video poster="" id="video1" autoplay controls muted loop style="width: 70%; height: auto;">
+              <!-- Your video file here -->
+              <source src="static/videos/challenge_2_ansr_pi_jun25.mp4"
+              type="video/mp4">
+            </video>
+          <h2 class="subtitle has-text-centered">Evader real-time behavior unknown</h2>
+        </figure>
+        </div>
+      </div>
   </div>
+</div>
+</div>
 </section>
-<!-- End video carousel -->
+<!-- End image carousel -->
 
+<!-- Image carousel -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Grid Environment</h2>
+      <h2 class="title is-3">Experiments</h2>
       <div id="results-carousel" class="carousel results-carousel">
-        <!-- Video 1 -->
+      <div class="item">
         <div class="item item-video1">
           <figure class="has-text-centered">
             <div class="has-text-centered"></div>
-            <video class="video-small" id="video1" autoplay controls muted loop>
+              <video poster="" id="video1" autoplay controls muted loop style="width: 70%; height: auto;">
               <!-- Your video file here -->
-              <source src="static/videos/l0_pursuer_l0e.mp4"
+              <source src="static/videos/challenge_1_sol_ansr_pi_jun25.mp4"
               type="video/mp4">
             </video>
-          <h2 class="subtitle has-text-centered">Level 0 Pursuer Team vs Level 0 Evader</h2>
+          <h2 class="subtitle has-text-centered">High-level pursuer and low-level pursuer communicate and capture after seeing evader</h2>
         </figure>
-        </div>
-        <!-- Video 2 -->
-        <div class="item item-video2">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-            <video class="video-small" id="video2" autoplay controls muted loop>
-              <!-- Your video file here -->
-              <source src="static/videos/l1_evader_l0p.mp4"
-              type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">Level 0 Pursuer Team vs Level 1 Evader</h2>
-        </figure>
-        </div>
-        <!-- Video 3 -->
-        <div class="item item-video3">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-            <video class="video-small" id="video3" autoplay controls muted loop> 
-              <!-- Your video file here -->
-              <source src="static/videos/l1_pursuer_l1e.mp4"
-              type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">Level 1 Pursuer Team vs Level 1 Evader</h2>
-          </figure>
-        </div>
-        <!-- Video 4 -->
-        <div class="item item-video4">
-          <figure class="has-text-centered">
-            <div class="has-text-centered"></div>
-            <video class="video-small" id="video4" autoplay controls muted loop> 
-              <!-- Your video file here -->
-              <source src="static/videos/l1_pursuer_l0e.mp4"
-              type="video/mp4">
-            </video>
-            <h2 class="subtitle has-text-centered">Level 1 Pursuer Team vs Level 0 Evader</h2>
-          </figure>
         </div>
       </div>
-    </div>
+
+      <div class="item">
+        <div class="item item-video1">
+          <figure class="has-text-centered">
+            <div class="has-text-centered"></div>
+            <video poster="" id="video1" autoplay controls muted loop style="width: 70%; height: auto;">
+              <!-- Your video file here -->
+              <source src="static/videos/challenge_2_sol_online_ansr_pi_jun25.mp4"
+              type="video/mp4">
+            </video>
+          <h2 class="subtitle has-text-centered">High-level pursuer and low-level pursuer identify, classify, and capture evader</h2>
+        </figure>
+        </div>
+      </div>
   </div>
+</div>
+</div>
 </section>
+<!-- End image carousel -->
+
+<!-- Image carousel -->
+<section class="hero is-small">
+  <div class="hero-body">
+    <div class="container">
+      <h2 class="title is-3">Results</h2>
+      <div id="results-carousel" class="carousel results-carousel">
+       <div class="item">
+        <!-- Your image here -->
+        <img class="carousel-image" src="static/images/results.png" alt="MY ALT TEXT" style="max-height: 600px; width: auto;"/>
+        <h2 class="subtitle has-text-centered">
+          <b>P0 vs E0.</b> Best trained policy, with an offline capture rate 1.5x better than the second best policy. 
+          No loss in generality in the online case for deterministic OD <br>    
+          <b>P0 vs E1.</b> Best trained evader policy, with an offline capture rate of 3%, the robustness of online prediction 
+          shows a 900% increase in capture <br>
+          <b>P1 vs E1.</b> Robust policy in regards to solving unknown evader start-end locations and not much loss in generality 
+          to the online case <br>
+          <b>P1 vs E0.</b> Very low capture rate, clearly does not perform well, but does generalize in terms of tracking both 
+          for deterministic/random and offline/online <br>
+          <b>Takeaway.</b> Each agent i is the most rational when going against its i - 1 adversary, showing that the bounded 
+          level-k schema is effective at finding optimal solutions to the game, also the classification module proves 
+          advantageous in particular when the Pursuer deals with an Evader it was not trained against as seen in scenario 2 and 4
+          
+        </h2>
+      </div>
+      <div class="item">
+        <!-- Your image here -->
+        <img class="carousel-image" src="static/images/online-results.png" alt="MY ALT TEXT" style="width: 100%; height: auto; max-width: 1100px;"/>
+        <h2 class="subtitle has-text-centered">
+          <b>Offline.</b> High classification rate of 98% in offline training attributed to the fact that the classification 
+          module was trained with a dataset where the pursuers do not switch policies in the middle of an episode <br>
+          <b>Online.</b> Noisy classifier attributed to dataset where pursuer and evader policies were static; despite this, with enough data, the opponent policy was correctly classified as the episode progressed
+        </h2>
+      </div>
+  </div>
+</div>
+</div>
+</section>
+<!-- End image carousel -->
+
+
 
 
 
